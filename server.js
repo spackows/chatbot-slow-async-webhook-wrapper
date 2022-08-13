@@ -5,10 +5,8 @@ const g_express    = require( "express"     );
 
 
 var g_app = g_express();
-g_app.use( g_express.static( __dirname + '/public' ) );
 g_app.use( g_bodyParser.json() );
 g_app.use( g_bodyParser.urlencoded( { extended: true } ) );
-g_app.set( "view engine", "ejs" );
 
 
 const g_server = g_http.Server( g_app );

@@ -19,6 +19,15 @@ g_server.listen( 8080, function()
 });
 
 
+g_app.post( "/health", function( request, response )
+{
+    console.log( "[server] /health ..." );
+    
+    response.status( 200 ).end( "Success" );
+    
+} );
+
+
 g_app.post( "/slow-endpoint", function( request, response )
 {
     console.log( "[server] /slow-endpoint ..." );

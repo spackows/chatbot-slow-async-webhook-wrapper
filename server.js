@@ -19,7 +19,7 @@ g_server.listen( 8080, function()
 });
 
 
-g_app.post( "/health", function( request, response )
+g_app.get( "/health", function( request, response )
 {
     console.log( "[server] /health ..." );
     

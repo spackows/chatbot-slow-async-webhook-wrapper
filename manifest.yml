@@ -1,4 +1,0 @@
----
-applications:
- - name: chatbot-slow-async-webhook
-   memory: 256M

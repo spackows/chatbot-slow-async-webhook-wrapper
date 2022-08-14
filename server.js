@@ -74,6 +74,8 @@ g_app.post( "/webhook-endpoint", function( request, response )
             break;
         
         default:
+        
+            response.status( 400 ).json( { "error_str" : "No 'action' parameter specified in the request" } );
     }
     
 } );

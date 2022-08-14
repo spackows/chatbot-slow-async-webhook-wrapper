@@ -1,6 +1,6 @@
 
 const g_wa_instance_url = process.env.WA_INSTANCE_URL;
-const g_wa_assistant_id = process.env.WA_ASSISTANT_ID;
+const g_wa_skill_id     = process.env.WA_SKILL_ID;
 const g_wa_apikey       = process.env.WA_APIKEY;
 const g_base_url        = process.env.BASE_URL;
 
@@ -88,12 +88,10 @@ function sendMessage( session_id, msg )
     g_log.writeLog( "[server] sendMessage session_id: " + session_id );
     g_log.writeLog( "[server] sendMessage msg: " + msg );
     
-    return;
-
-    // https://cloud.ibm.com/apidocs/assistant/assistant-v2#message
+    // https://cloud.ibm.com/apidocs/assistant/assistant-v1#message
     //
-
-    var url = g_wa_instance_url + "/v2/assistants/" + g_wa_assistant_id + "/sessions/" + session_id + "/message?version=2021-06-14";
+    
+    var url = g_wa_instance_url + "/v1/workspaces/" + g_wa_skill_id + "/message/?version=2021-11-27";
     
     var data = { "input" : [ { "text" : msg } ] };
     

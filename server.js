@@ -2,6 +2,7 @@
 const g_wa_instance_url = process.env.WA_INSTANCE_URL;
 const g_wa_assistant_id = process.env.WA_ASSISTANT_ID;
 const g_wa_apikey       = process.env.WA_APIKEY;
+const g_base_url        = process.env.BASE_URL;
 
 
 const g_http       = require( "http"        );
@@ -47,7 +48,7 @@ g_app.post( "/webhook-endpoint", function( request, response )
             
             response.status( 200 ).json( { "error_str" : "", "result" : "Success" } );
             
-            g_axios.post( "./slow-endpoint" ).then( function( data )
+            g_axios.post( g_base_url + "/slow-endpoint" ).then( function( data )
             {
                 sendMessage( session_id, "SLOWENDPOINT RESULT: Success" );
                 
@@ -124,7 +125,7 @@ function printAxiosError( error )
     // https://www.npmjs.com/package/axios#handling-errors
     //
     
-    g_log.writeLog( "\nAxios error:" );
+    g_log.writeLog( "\nAxios error:" + error.message );
     
     if( error.response )
     {
@@ -133,21 +134,8 @@ function printAxiosError( error )
         g_log.writeLog( error.response.data    );
         g_log.writeLog( error.response.status  );
         g_log.writeLog( error.response.headers );
-    } 
-    else if( error.request )
-    {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        g_log.writeLog( error.request );
-    } 
-    else 
-    {
-      // Something happened in setting up the request that triggered an Error
-      g_log.writeLog( error.message );
     }
     
-    g_log.writeLog( error.config );
 }
 
 
